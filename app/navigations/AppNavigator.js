@@ -1,43 +1,38 @@
-import {
-  createMaterialTopTabNavigator,
-  createDrawerNavigator,
-  createBottomTabNavigator,
-  DrawerItems,
-  createStackNavigator
-} from "react-navigation";
+import { createDrawerNavigator } from "react-navigation";
+import MapScreen from "../containers/MapScreen";
 
 const AppDrawerNavigator = createDrawerNavigator(
   {
-    Home: HomeScreen,
-    Bookings: {
-      screen: BookingLogScreen,
-      navigationOptions: {
-        header: null,
-        drawerIcon: () => (
-          <Icon
-            ios="ios-bookmark"
-            android="md-bookmark"
-            style={{ color: "white" }}
-          />
-        )
-      }
-    },
-    Profile: {
-      screen: ProfileStackNavigator,
-      navigationOptions: {
-        header: null,
-        drawerIcon: () => (
-          <Icon
-            ios="ios-contact"
-            android="md-contact"
-            style={{ color: "white" }}
-          />
-        )
-      }
-    }
+    Home: MapScreen,
+    // Bookings: {
+    //   screen: BookingLogScreen,
+    //   navigationOptions: {
+    //     header: null,
+    //     drawerIcon: () => (
+    //       <Icon
+    //         ios="ios-bookmark"
+    //         android="md-bookmark"
+    //         style={{ color: "white" }}
+    //       />
+    //     )
+    //   }
+    // },
+    // Profile: {
+    //   screen: ProfileStackNavigator,
+    //   navigationOptions: {
+    //     header: null,
+    //     drawerIcon: () => (
+    //       <Icon
+    //         ios="ios-contact"
+    //         android="md-contact"
+    //         style={{ color: "white" }}
+    //       />
+    //     )
+    //   }
+    // }
   },
   {
-    contentComponent: SideBar,
+    //contentComponent: SideBar,
     drawerBackgroundColor: "#fb9403",
     contentOptions: {
       activeBackgroundColor: "black",

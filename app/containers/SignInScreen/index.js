@@ -33,7 +33,7 @@ class SignInScreen extends Component {
   componentWillUpdate() {
     console.log(1);
     if (this.props.authToken) {
-      this.props.navigation.navigate("GCL");
+      this.props.navigation.navigate("Location");
     }
   }
 
@@ -44,15 +44,16 @@ class SignInScreen extends Component {
   }
   componentWillReceiveProps() {
     console.log(2);
+    console.log(this.props.authToken);
     if (this.props.authToken) {
-      this.props.navigation.navigate("GCL");
+      this.props.navigation.navigate("Location");
     }
   }
 
   componentDidMount() {
     console.log(3);
     if (this.props.authToken) {
-      this.props.navigation.navigate("GCL");
+      this.props.navigation.navigate("Location");
     }
   }
 
@@ -140,7 +141,7 @@ class SignInScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    authToken: state.auth.authToken,
+    authToken: state.auth.token,
     isLoading: state.auth.isLoading,
     hasToken: state.auth.hasToken,
     error: state.auth.error

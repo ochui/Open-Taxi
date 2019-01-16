@@ -4418,7 +4418,7 @@ pure-uuid@^1.5.6:
   resolved "https://registry.yarnpkg.com/pure-uuid/-/pure-uuid-1.5.6.tgz#313dc69835b42c0e3468199538edcbb730ddfa09"
   integrity sha512-yUXFK0Xt+twSu6efNkBWPEBryDQ/3uaeA5nMKaGP4RM6WJyap657lU9yS4NSPB7X485sAkmP8SNv0vCxkXhrNA==
 
-qs@^6.5.0:
+qs@^6.5.0, qs@^6.5.2:
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.6.0.tgz#a99c0f69a8d26bf7ef012f871cdabb0aee4424c2"
   integrity sha512-KIJqT9jQJDQx5h5uAVPimw6yVg2SekOKu959OCtktD3FjzbpvaPr8i4zzg07DOMz+igA4W/aNM7OV8H37pFYfA==
@@ -4510,6 +4510,11 @@ react-native-easy-grid@0.2.0:
   dependencies:
     lodash "^4.11.1"
 
+react-native-geocoder@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-geocoder/-/react-native-geocoder-0.5.0.tgz#ff4b9c55d5768a4784eefccb411761c82e067579"
+  integrity sha1-/0ucVdV2ikeE7vzLQRdhyC4GdXk=
+
 react-native-geocoding@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-geocoding/-/react-native-geocoding-0.3.0.tgz#7987ad98f52b2b5a912688e80347f5222861f2a9"
@@ -4532,6 +4537,13 @@ react-native-gesture-handler@^1.0.0:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
     prop-types "^15.5.10"
+
+react-native-gplaces@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-gplaces/-/react-native-gplaces-2.0.1.tgz#36e9fd90b03b75534e1923ec43827b616cfddcc1"
+  integrity sha512-W4sIyG2LEWhLVV5dJvEbtxMR1uaY/qCeNjihFTtALjs/c9ciJMVf2XbGqzT9gc9m/yrldjiEOF+yySXxTG7yFA==
+  dependencies:
+    qs "^6.5.2"
 
 react-native-indicators@^0.13.0:
   version "0.13.0"
