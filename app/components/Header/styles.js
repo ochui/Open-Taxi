@@ -14,8 +14,8 @@ const styles = {
       height: 50,
     },
     header: {
-      paddingTop: getStatusBarHeight(),
-      height: 54 + getStatusBarHeight(),
+      // paddingTop: getStatusBarHeight(),
+      // height: 54 + getStatusBarHeight(),
       backgroundColor: '#fb9403',
     },
     headerBody:{
