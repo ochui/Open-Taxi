@@ -19,9 +19,9 @@ class AuthLoadingScreen extends React.Component {
   // Fetch the token from storage then navigate to our appropriate place
   _bootstrap = () => {
     if (this.props.authToken) {
-      axios.defaults.headers.common["Authorization"] = `Token ${userToken}`;
+      axios.defaults.headers.common["Authorization"] = `Token ${this.props.authToken}`;
       this.props.getProfile();
-      this.props.navigation.navigate("GCL");
+      this.props.navigation.navigate("Location");
     } else {
       this.props.navigation.navigate("Auth");
     }
@@ -43,7 +43,7 @@ class AuthLoadingScreen extends React.Component {
 const mapActionsToProps = { getProfile };
 const mapStateToProps = state => {
   return {
-    authToken: state.auth.authToken
+    authToken: state.auth.token
   };
 };
 

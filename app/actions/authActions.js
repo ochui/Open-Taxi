@@ -38,21 +38,18 @@ export function register(data) {
       .post("auth/users/create", data)
       .then(res => {
         //Log in user. REST is bad sometimes
-        console.log("-----", res);
         axios
           .post("auth/token/login/", {
             username: data.username,
             password: data.password
           })
           .then(res => {
-            console.log("+++++", res);
             dispatch({
               type: TOKEN_RECIEVE,
               payload: res.data.auth_token
             });
           })
           .catch(error => {
-            console.log("=========", error.response, error.request);
             dispatch({
               type: TOKEN_REQUSET_ERROR,
               payload: error
@@ -60,7 +57,6 @@ export function register(data) {
           });
       })
       .catch(error => {
-        console.log("********", error.response, error.request);
         dispatch({
           type: TOKEN_REQUSET_ERROR,
           payload: error
@@ -106,6 +102,7 @@ export function checkToken() {
 }
 
 export function getProfile() {
+  console.log("pro-----------")
   return dispatch => {
     axios
       .get("auth/me")
