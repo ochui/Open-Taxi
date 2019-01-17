@@ -11,6 +11,7 @@ import {
 } from "native-base";
 import { PulseIndicator, BarIndicator } from "react-native-indicators";
 import Modal from "react-native-modal";
+import styles from "./styles";
 
 export const WaitingModal = ({
   isModalVisible,
