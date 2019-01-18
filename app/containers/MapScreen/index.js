@@ -42,6 +42,13 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = ASPECT_RATIO * LATITUDE_DELTA;
 
 class MapScreen extends Component {
+
+  static navigationOptions = {
+    header: null,
+    drawerIcon: () => (
+      <Icon ios="ios-map" android="md-map" style={{ color: "white" }} />
+    )
+  };
   constructor() {
     super();
     this.state = {

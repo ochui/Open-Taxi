@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "native-base";
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
+import SideBar from "../components/SideBar";
 import MapScreen from "../containers/MapScreen";
 import ProfileScreen from "../containers/ProfileScreen";
 import EditProfileScreen from "../containers/EditProfileScreen";
@@ -50,11 +51,21 @@ const AppDrawerNavigator = createDrawerNavigator(
       }
     },
     Park: {
-      screen: ParkStackNavigator
+      screen: ParkStackNavigator,
+      navigationOptions: {
+        header: null,
+        drawerIcon: () => (
+          <Icon
+            ios="ios-car"
+            android="md-car"
+            style={{ color: "white" }}
+          />
+        )
+      }
     }
   },
   {
-    //contentComponent: SideBar,
+    contentComponent: SideBar,
     drawerBackgroundColor: "#fb9403",
     contentOptions: {
       activeBackgroundColor: "black",
