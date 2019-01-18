@@ -36,9 +36,8 @@ class RouteScreen extends Component {
       <Container>
         <AppHeader props={this.props} />
         <CompleteFlatList
-          searchKey={["pick_up", "drop_off"]}
+          searchKey={["drop_off", "pick_up", "cost"]}
           searchBarBackgroundStyles="yellow"
-          highlightColor="#fb9403"
           pullToRefreshCallback={() => {
             this.props.getRoutes(this.props.navigation.getParam("park", 0));
           }}

@@ -53,7 +53,6 @@ class CompanyScreen extends Component {
         <CompleteFlatList
           searchKey={["name", "address"]}
           searchBarBackgroundStyles="yellow"
-          highlightColor="#fb9403"
           pullToRefreshCallback={() => {
             this.props.getCompanies();
           }}
