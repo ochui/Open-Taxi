@@ -2835,6 +2835,10 @@ has-values@^1.0.0:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
+"highlight-words-core@git+https://github.com/fattahmuhyiddeen/highlight-words-core.git#master":
+  version "1.2.0"
+  resolved "git+https://github.com/fattahmuhyiddeen/highlight-words-core.git#10faeca1f058851f0e5be2ef31e5c697688e2cca"
+
 hoist-non-react-statics@^1.0.5:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
@@ -4441,7 +4445,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -4543,6 +4547,20 @@ react-native-branch@2.2.5:
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
   integrity sha1-QHTdY7SXPmOX2c5Q6XtXx3pRjp0=
 
+react-native-cards@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-cards/-/react-native-cards-1.1.4.tgz#f5e6511d9b1b04b3891dfc31eff939770e9b778d"
+  integrity sha512-5oXyKCH4CLP7oM7zARe1ietwuk5mqTpzLksLldz6XCLBW4wwhnmZ9j34wkVssQdFlNJNkVE1agPRUCuYzBZQ2g==
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-complete-flatlist@^1.1.34:
+  version "1.1.34"
+  resolved "https://registry.yarnpkg.com/react-native-complete-flatlist/-/react-native-complete-flatlist-1.1.34.tgz#c9c0000db4d3bd02e94d8a1d26e066e8460e847c"
+  integrity sha512-Ig2kbxAOg+JcFnYWFpg/k7bi/42V39My/duc8zrHz5fOW0ebeWAVy5UlNtdjNQ2fFsoYv2EAMAhwS0anoiE2PQ==
+  dependencies:
+    react-native-highlight-words "git+https://github.com/fattahmuhyiddeen/react-native-highlight-words.git#master"
+
 react-native-drawer@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"
@@ -4599,6 +4617,13 @@ react-native-gplaces@^2.0.1:
   integrity sha512-W4sIyG2LEWhLVV5dJvEbtxMR1uaY/qCeNjihFTtALjs/c9ciJMVf2XbGqzT9gc9m/yrldjiEOF+yySXxTG7yFA==
   dependencies:
     qs "^6.5.2"
+
+"react-native-highlight-words@git+https://github.com/fattahmuhyiddeen/react-native-highlight-words.git#master":
+  version "1.0.1"
+  resolved "git+https://github.com/fattahmuhyiddeen/react-native-highlight-words.git#0d105c534b8138eafee587cc1785aca89c7b175a"
+  dependencies:
+    highlight-words-core "git+https://github.com/fattahmuhyiddeen/highlight-words-core.git#master"
+    prop-types "^15.5.7"
 
 react-native-indicators@^0.13.0:
   version "0.13.0"
@@ -4681,6 +4706,11 @@ react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   integrity sha512-QNt6VkEW8SP1UJ7yjD5P4bOTWwHQfoIMD5CqnA06pcubdNwHR1NmjiNZsVnIvp5wAEVbW6yTHjLXOh1fzab4xg==
   dependencies:
     prop-types "^15.6.1"
+
+react-native-timeline-listview@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-timeline-listview/-/react-native-timeline-listview-0.2.3.tgz#e46b7f0fd2c2206329eee6194795e03899afe882"
+  integrity sha1-5Gt/D9LCIGMp7uYZR5XgOJmv6II=
 
 react-native-vector-icons@6.0.0:
   version "6.0.0"

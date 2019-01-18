@@ -4,29 +4,38 @@ import { createDrawerNavigator, createStackNavigator } from "react-navigation";
 import MapScreen from "../containers/MapScreen";
 import ProfileScreen from "../containers/ProfileScreen";
 import EditProfileScreen from "../containers/EditProfileScreen";
+import BookingLogScreen from "../containers/BookingLogScreen";
+import CompanyScreen from "../containers/CompanyScreen";
+import RouteScreen from "../containers/RouteScreen";
 // Profile
 const ProfileStackNavigator = createStackNavigator({
   Profile: ProfileScreen,
   Edit: EditProfileScreen
 });
 
+// Park(Company)
+const ParkStackNavigator = createStackNavigator({
+  Parks: CompanyScreen,
+  Routes: RouteScreen
+});
+
 // Main
 const AppDrawerNavigator = createDrawerNavigator(
   {
     Home: MapScreen,
-    // Bookings: {
-    //   screen: BookingLogScreen,
-    //   navigationOptions: {
-    //     header: null,
-    //     drawerIcon: () => (
-    //       <Icon
-    //         ios="ios-bookmark"
-    //         android="md-bookmark"
-    //         style={{ color: "white" }}
-    //       />
-    //     )
-    //   }
-    // },
+    Bookings: {
+      screen: BookingLogScreen,
+      navigationOptions: {
+        header: null,
+        drawerIcon: () => (
+          <Icon
+            ios="ios-bookmark"
+            android="md-bookmark"
+            style={{ color: "white" }}
+          />
+        )
+      }
+    },
     Profile: {
       screen: ProfileStackNavigator,
       navigationOptions: {
@@ -39,6 +48,9 @@ const AppDrawerNavigator = createDrawerNavigator(
           />
         )
       }
+    },
+    Park: {
+      screen: ParkStackNavigator
     }
   },
   {

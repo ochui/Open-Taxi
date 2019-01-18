@@ -9,6 +9,7 @@ import {
 import { connect } from "react-redux";
 import axios from "axios";
 import { getProfile } from "../../actions/authActions";
+import { getActiveBookings } from "../../actions/bookingActions";
 
 class AuthLoadingScreen extends React.Component {
   constructor(props) {
@@ -19,8 +20,11 @@ class AuthLoadingScreen extends React.Component {
   // Fetch the token from storage then navigate to our appropriate place
   _bootstrap = () => {
     if (this.props.authToken) {
-      axios.defaults.headers.common["Authorization"] = `Token ${this.props.authToken}`;
+      axios.defaults.headers.common["Authorization"] = `Token ${
+        this.props.authToken
+      }`;
       this.props.getProfile();
+      this.props.getActiveBookings();
       this.props.navigation.navigate("Location");
     } else {
       this.props.navigation.navigate("Auth");
@@ -40,7 +44,7 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-const mapActionsToProps = { getProfile };
+const mapActionsToProps = { getProfile, getActiveBookings };
 const mapStateToProps = state => {
   return {
     authToken: state.auth.token
