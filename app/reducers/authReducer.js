@@ -14,12 +14,13 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
 const initialState = {
-  token: {},
+  token: false,
   isLoading: false,
   isAuthenticated: false,
   hasToken: false,
   userData: {},
   editLoading: false,
+  userDataLoaded: false,
   error: {}
 };
 
@@ -76,7 +77,7 @@ const authReducer = (state = initialState, action) => {
     case CLEAR_TOKEN:
       return update(state, {
         token: {
-          $set: null
+          $set: false
         },
         isAuthenticated: {
           $set: false
@@ -101,6 +102,9 @@ const authReducer = (state = initialState, action) => {
         },
         editLoading: {
           $set: false
+        },
+        userDataLoaded: {
+          $set: true
         }
       });
     case EDIT_LOADER:

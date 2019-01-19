@@ -21,18 +21,18 @@ const SideBar = props => (
     }}
   >
     <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
-    <View
-      style={{
-        height: 150,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Image
-        style={{ height: 120, width: 120, borderRadius: 60 }}
-        source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
-      />
-    </View>
+      <View
+        style={{
+          height: 150,
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <Image
+          style={{ height: 120, width: 120, borderRadius: 60 }}
+          source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
+        />
+      </View>
       <DrawerItems {...props} />
     </SafeAreaView>
     <TouchableOpacity
@@ -50,7 +50,8 @@ const SideBar = props => (
             {
               text: "Confirm",
               onPress: () => {
-                props.navigation.navigate("Auth");
+                //clearToken();
+                props.navigation.navigate("AuthLoading", { action: "LOGOUT" });
               }
             }
           ],

@@ -1,20 +1,21 @@
 import React from "react";
-import {
-  ActivityIndicator,
-  AsyncStorage,
-  StatusBar,
-  StyleSheet,
-  View
-} from "react-native";
+import { ActivityIndicator, StatusBar, View } from "react-native";
 import { connect } from "react-redux";
 import axios from "axios";
-import { getProfile } from "../../actions/authActions";
+import { getProfile, clearToken } from "../../actions/authActions";
 import { getActiveBookings } from "../../actions/bookingActions";
 
 class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
-    this._bootstrap();
+    if (this.props.navigation.getParam("action", "CHECK") == "LOGOUT") {
+      //this.props.clearToken();
+      //this.props.navigation.dismiss();
+
+      this.props.navigation.navigate("Auth");
+    } else {
+      this._bootstrap();
+    }
   }
 
   // Fetch the token from storage then navigate to our appropriate place
@@ -44,7 +45,7 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-const mapActionsToProps = { getProfile, getActiveBookings };
+const mapActionsToProps = { getProfile, getActiveBookings, clearToken };
 const mapStateToProps = state => {
   return {
     authToken: state.auth.token

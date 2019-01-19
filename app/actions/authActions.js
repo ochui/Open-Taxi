@@ -74,19 +74,20 @@ export function tokenRequest() {
 }
 
 export function clearToken() {
+  console.log("------------------");
   return dispatch => {
-    axios
-      .post("auth/token/logout")
-      .then(res => {
-        console.log(res);
-        AsyncStorage.removeItem("authToken").then(() => {
-          dispatch({
-            type: CLEAR_TOKEN,
-            payload: res
-          });
-        });
-      })
-      .catch(err => console.log(err));
+    // axios
+    //   .post("auth/token/logout")
+    //   .then(res => {
+    //     console.log(res);
+    //     AsyncStorage.removeItem("authToken").then(() => {
+    dispatch({
+      type: CLEAR_TOKEN
+      //payload: res
+    });
+    //   });
+    // })
+    // .catch(err => console.log(err));
   };
 }
 
@@ -102,7 +103,6 @@ export function checkToken() {
 }
 
 export function getProfile() {
-  console.log("pro-----------")
   return dispatch => {
     axios
       .get("auth/me")

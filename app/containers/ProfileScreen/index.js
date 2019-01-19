@@ -3,6 +3,8 @@ import { StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Container, Content, Icon, Text, View } from "native-base";
 import { Constants, ImagePicker, Permissions } from "expo";
 import { connect } from "react-redux";
+import { BarIndicator } from "react-native-indicators";
+import { getProfile } from "../../actions/authActions";
 import AppHeader from "../../components/Header";
 import styles from "./styles";
 
@@ -29,6 +31,35 @@ class ProfileScreen extends Component {
       this._handleImagePicked(pickerResult);
     }
   };
+  componentWillMount() {
+    if (!this.props.userDataLoaded) {
+      this.props.getProfile();
+    }
+  }
+
+  renderInfo = () => {
+    if (this.props.userDataLoaded) {
+      return (
+        <View style={styles.bodyContent}>
+          <Text style={styles.name}>
+            {this.props.userData.first_name} {this.props.userData.last_name}
+          </Text>
+          <Text style={styles.info}>
+            Mobile Number: {this.props.userData.phone_number}
+          </Text>
+          <Text style={styles.info}>Email: {this.props.userData.email}</Text>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Edit")}
+            style={styles.buttonContainer}
+          >
+            <Text style={styles.buttonText}>EDIT</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      <BarIndicator />;
+    }
+  };
 
   render() {
     return (
@@ -47,25 +78,7 @@ class ProfileScreen extends Component {
               }}
             />
           </TouchableOpacity>
-          <View style={styles.body}>
-            <View style={styles.bodyContent}>
-              <Text style={styles.name}>
-                {this.props.userData.first_name} {this.props.userData.last_name}
-              </Text>
-              <Text style={styles.info}>
-                Mobile Number: {this.props.userData.phone_number}
-              </Text>
-              <Text style={styles.info}>
-                Email: {this.props.userData.email}
-              </Text>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("Edit")}
-                style={styles.buttonContainer}
-              >
-                <Text style={styles.buttonText}>EDIT</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <View style={styles.body}>{this.renderInfo()}</View>
         </Content>
       </Container>
     );
@@ -74,7 +87,8 @@ class ProfileScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    userData: state.auth.userData
+    userData: state.auth.userData,
+    userDataLoaded: state.auth.userDataLoaded
   };
 };
 const mapActionToProps = {};

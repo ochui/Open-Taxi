@@ -42,7 +42,6 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = ASPECT_RATIO * LATITUDE_DELTA;
 
 class MapScreen extends Component {
-
   static navigationOptions = {
     header: null,
     drawerIcon: () => (
@@ -240,20 +239,22 @@ class MapScreen extends Component {
             enableLoader={this.props.enableCLoader}
           />
 
-          <PaymentModal
-            isModalVisible={this.props.paymentModalStatus}
-            paymentMethod={this.props.paymentMethod}
-            togglePaymentModal={this._togglePaymentModal}
-            userData={this.props.userData}
-            fare={
-              this.props.fare
-                ? this.props.fare.calculatedFare.toString()
-                : "0.0"
-            }
-            addBooking={() => {
-              this.props.enableLoader(), this.props.addBooking();
-            }}
-          />
+          {this.props.userDataLoaded && (
+            <PaymentModal
+              isModalVisible={this.props.paymentModalStatus}
+              paymentMethod={this.props.paymentMethod}
+              togglePaymentModal={this._togglePaymentModal}
+              userData={this.props.userData}
+              fare={
+                this.props.fare
+                  ? this.props.fare.calculatedFare.toString()
+                  : "0.0"
+              }
+              addBooking={() => {
+                this.props.enableLoader(), this.props.addBooking();
+              }}
+            />
+          )}
           <Toast ref="toast" />
         </View>
       </Container>
@@ -293,7 +294,8 @@ const mapStateToProps = state => {
     paymentModalStatus: state.booking.paymentModalStatus,
     fare: state.location.selectedAddress.matrix,
     initialRegion: state.location.region,
-    userData: state.auth.userData
+    userData: state.auth.userData,
+    userDataLoaded: state.auth.userDataLoaded
   };
 };
 
