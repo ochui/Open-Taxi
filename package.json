@@ -15,6 +15,7 @@
     "expo": "^31.0.2",
     "humanparser": "^1.10.0",
     "immutability-helper": "^2.9.0",
+    "is-equal": "^1.5.5",
     "md5": "^2.2.1",
     "native-base": "^2.10.0",
     "node-forge": "^0.7.6",
@@ -37,7 +38,8 @@
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "redux-watch": "^1.1.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"

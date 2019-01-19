@@ -4,6 +4,7 @@ import { MapView } from "expo";
 import { Icon, View, Fab, Container } from "native-base";
 import { connect } from "react-redux";
 import { debounce } from "lodash";
+import isEqual from "is-equal";
 import Toast from "react-native-easy-toast";
 import { PulseIndicator } from "react-native-indicators";
 import SearchBox from "../../components/SearchBox";
@@ -33,6 +34,8 @@ import {
   enableCLoader,
   cancelBooking
 } from "../../actions/bookingActions";
+import watch from "redux-watch";
+import { store } from "../../store";
 
 import styles from "./styles";
 
@@ -58,6 +61,27 @@ class MapScreen extends Component {
       leading: true,
       trailing: false
     });
+
+    this.unsubscribe = null;
+  }
+
+  componentWillMount() {
+    // store is THE redux store
+    let w = watch(store.getState, "location.selectedAddress", isEqual);
+    this.unsubscribe = store.subscribe(
+      w(newVal => {
+        if (newVal.type == "pickUp") {
+          let { lat, lng } = newVal.pickUp.location;
+          this.gotoRegion(lat, lng);
+        } else if (newVal.type == "dropOff") {
+          let { lat, lng } = newVal.dropOff.location;
+          this.gotoRegion(lat, lng);
+        }
+      })
+    );
+  }
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   onRegionChange = region => {
