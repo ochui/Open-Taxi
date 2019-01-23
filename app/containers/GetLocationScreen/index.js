@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, Alert } from "react-native";
+import { View, Text, Alert, Platform, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { getCurrentLocation } from "../../actions/locationActions";
 import styles from "./styles";
-import { Constants, Location, Permissions } from "expo";
+import { Constants, Location, Permissions, IntentLauncherAndroid } from "expo";
 
 const standardMessage = "Getting your location";
 const longLoadingMessage = "We still working on it";
@@ -13,14 +13,18 @@ class GetLocationScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadingCount: 0
+      loadingCount: 0,
+      locationAcess: false
     };
   }
   componentWillMount() {
     Location.getProviderStatusAsync().then(r => {
       console.log(r);
       if (r.locationServicesEnabled) {
+        this.setState({ locationAcess: true });
         this._getLocationAsync();
+      } else {
+        this.setState({ locationAcess: false });
       }
     });
 
@@ -36,11 +40,6 @@ class GetLocationScreen extends Component {
     }, 700);
   }
 
-  componentDidMount() {
-    //this.props.getCurrentLocation();
-    this._getLocationAsync();
-  }
-
   componentWillUnmount() {
     clearInterval(this.timerId);
   }
@@ -50,6 +49,8 @@ class GetLocationScreen extends Component {
       setInterval(() => {
         this.props.navigation.navigate("App");
       }, 3000);
+    } else {
+      this._getLocationAsync();
     }
   }
 
@@ -62,16 +63,43 @@ class GetLocationScreen extends Component {
     this.props.getCurrentLocation();
   };
 
+  openSettings = () => {
+    if (Platform.OS === "android") {
+      IntentLauncherAndroid.startActivityAsync(
+        IntentLauncherAndroid.ACTION_LOCATION_SOURCE_SETTINGS
+      );
+      this.setState({ locationAcess: true });
+      this._getLocationAsync();
+    } else {
+      Linking.openURL("app-settings:");
+      this.setState({ locationAcess: true });
+      this._getLocationAsync();
+    }
+  };
+
   render() {
-    const postFixIndex = this.state.loadingCount % messagePostfixes.length;
-    const messagePostfix = messagePostfixes[postFixIndex];
-    const loadingTakesLonger = this.state.loadingCount >= 10;
-    const message = loadingTakesLonger ? longLoadingMessage : standardMessage;
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{message + messagePostfix}</Text>
-      </View>
-    );
+    if (this.state.locationAcess) {
+      const postFixIndex = this.state.loadingCount % messagePostfixes.length;
+      const messagePostfix = messagePostfixes[postFixIndex];
+      const loadingTakesLonger = this.state.loadingCount >= 10;
+      const message = loadingTakesLonger ? longLoadingMessage : standardMessage;
+      return (
+        <View style={styles.container}>
+          <Text style={styles.text}>{message + messagePostfix}</Text>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => this.openSettings()}
+          >
+            <Text style={styles.buttonText}>Enable Location Service</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
 }
 

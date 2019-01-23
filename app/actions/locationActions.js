@@ -19,23 +19,28 @@ import calculateFare from "../utills/fareCalculator";
 import GPlaces from "react-native-gplaces";
 import Geocoder from "react-native-geocoder";
 import axios from "axios";
+import { Location } from "expo";
 const places = new GPlaces({
   key: GOOGLE_API //'AIzaSyAhZ0T_u35s-nuKtDnpHfIjZpgScKzeK38', // https://developers.google.com/maps/documentation/javascript/get-api-key
 });
 
+const GEOLOCATION_OPTIONS = {
+  enableHighAccuracy: true,
+  timeout: 20000,
+  maximumAge: 1000
+};
+
 Geocoder.fallbackToGoogle(GOOGLE_API);
 export function getCurrentLocation() {
   return dispatch => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
+    Location.getCurrentPositionAsync(GEOLOCATION_OPTIONS)
+      .then(position => {
         dispatch({
           type: GET_CURRENT_LOCATION,
           payload: position
         });
-      },
-      error => console.log(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
+      })
+      .catch(error => console.log(error));
   };
 }
 
