@@ -95,9 +95,9 @@ class SignInScreen extends Component {
             <StatusBar barStyle="light-content" />
             <Field
               secureTextEntry={false}
-              placeholder="Username"
+              placeholder="Phone Number"
               onSubmitEditing={() => this.passwordInput.focus()}
-              keyboardType="email-address"
+              keyboardType="phone-pad"
               returnKeyType="next"
               autoCorrect={false}
               name="username"

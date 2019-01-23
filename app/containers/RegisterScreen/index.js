@@ -125,7 +125,7 @@ class RegisterScreen extends Component {
             <Field
               secureTextEntry={false}
               placeholder="Full Name"
-              onSubmitEditing={() => this.passwordInput.focus()}
+              onSubmitEditing={() => this.phoneInput.focus()}
               keyboardType="email-address"
               returnKeyType="next"
               autoCorrect={false}
@@ -135,14 +135,15 @@ class RegisterScreen extends Component {
             />
             <Field
               secureTextEntry={false}
-              placeholder="Mobile Number"
-              onSubmitEditing={() => this.passwordInput.focus()}
-              keyboardType="number"
+              placeholder="Phone Number"
+              onSubmitEditing={() => this.emailInput.focus()}
+              keyboardType="phone-pad"
               returnKeyType="next"
               autoCorrect={false}
               name="phone_number"
               component={this.renderInput}
               disabled={isLoading}
+              ref={input => (this.phoneInput = input)}
             />
             <Field
               secureTextEntry={false}
@@ -154,6 +155,7 @@ class RegisterScreen extends Component {
               name="email"
               component={this.renderInput}
               disabled={isLoading}
+              ref={input => (this.emailInput = input)}
             />
             <Field
               secureTextEntry
