@@ -12,12 +12,15 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { Text } from "native-base";
 import { BarIndicator } from "react-native-indicators";
+import watch from "redux-watch";
+import isEqual from "is-equal";
 import {
   login,
   tokenRequest,
   checkToken,
   clearError
 } from "../../actions/authActions";
+import { store } from "../../store";
 import styles from "./styles";
 
 class SignInScreen extends Component {
@@ -30,24 +33,22 @@ class SignInScreen extends Component {
     this.props.login(values);
   };
 
-  componentWillUpdate() {
-    if (this.props.authToken) {
-      this.props.navigation.navigate("Location");
-    }
+  componentWillMount() {
+    let w = watch(store.getState, "auth", isEqual);
+    this.unsubscribe = store.subscribe(
+      w((newVal, oldVal, objectPath) => {
+        if (newVal.token) {
+          this.props.navigation.navigate("Location");
+        } else if (!newVal.isLoading && newVal.error) {
+          Alert.alert("Error", "Unable to login with provided credentials.");
+        }
+      })
+    );
   }
 
-  componentDidUpdate() {
-    if (this.props.error) {
-      Alert.alert("Error", "Unable to login with provided credentials.");
-    }
+  componentWillUnmount() {
+    this.unsubscribe = null;
   }
-  componentWillReceiveProps() {
-    console.log(this.props.authToken);
-    if (this.props.authToken) {
-      this.props.navigation.navigate("Location");
-    }
-  }
-
   renderInput = ({
     placeholder,
     returnKeyType,

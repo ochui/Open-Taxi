@@ -12,10 +12,28 @@ import {
 import { connect } from "react-redux";
 import AppHeader from "../../components/Header";
 import { getRoutes } from "../../actions/companyAction";
+import RouteModal from "../../components/RouteModal";
 
 class RouteScreen extends Component {
   static navigationOptions = {
     header: null
+  };
+
+  constructor() {
+    super();
+    this.state = {
+      isModalVisible: false,
+      routeId: null,
+      cost: null
+    };
+  }
+
+  _toggleModal = (routeId = null, cost = null) => {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible,
+      routeId: routeId,
+      cost: cost
+    });
   };
 
   cell = data => {
@@ -25,7 +43,13 @@ class RouteScreen extends Component {
         <CardContent text={"₦" + data.cost} />
         <CardAction separator={true} inColumn={false}>
           <CardButton onPress={() => {}} title="Share" color="#FEB557" />
-          <CardButton onPress={() => {}} title="Book" color="#FEB557" />
+          <CardButton
+            onPress={() => {
+              this._toggleModal((routeId = data.id), (cost = data.cost));
+            }}
+            title="Book"
+            color="#FEB557"
+          />
         </CardAction>
       </Card>
     );
@@ -47,6 +71,12 @@ class RouteScreen extends Component {
           renderItem={this.cell}
           onEndReached={() => console.log("reach end")}
           onEndReachedThreshold={0}
+        />
+
+        <RouteModal
+          isModalVisible={this.state.isModalVisible}
+          toggleRouteModal={this._toggleModal}
+          cost={this.state.cost}
         />
       </Container>
     );

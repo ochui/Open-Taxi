@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { connect } from "react-redux";
 import { getCurrentLocation } from "../../actions/locationActions";
 import styles from "./styles";
-import { Location } from "expo";
+import { Constants, Location, Permissions } from "expo";
 
 const standardMessage = "Getting your location";
 const longLoadingMessage = "We still working on it";
@@ -18,8 +18,9 @@ class GetLocationScreen extends Component {
   }
   componentWillMount() {
     Location.getProviderStatusAsync().then(r => {
+      console.log(r);
       if (r.locationServicesEnabled) {
-        this.props.getCurrentLocation();
+        this._getLocationAsync();
       }
     });
 
@@ -36,7 +37,8 @@ class GetLocationScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentLocation();
+    //this.props.getCurrentLocation();
+    this._getLocationAsync();
   }
 
   componentWillUnmount() {
@@ -51,6 +53,15 @@ class GetLocationScreen extends Component {
     }
   }
 
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== "granted") {
+      Alert.alert("Permission to access location was denied");
+    }
+
+    this.props.getCurrentLocation();
+  };
+
   render() {
     const postFixIndex = this.state.loadingCount % messagePostfixes.length;
     const messagePostfix = messagePostfixes[postFixIndex];
@@ -59,7 +70,6 @@ class GetLocationScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{message + messagePostfix}</Text>
-        
       </View>
     );
   }

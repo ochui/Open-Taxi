@@ -91,7 +91,7 @@ const mapStateToProps = state => {
     userDataLoaded: state.auth.userDataLoaded
   };
 };
-const mapActionToProps = {};
+const mapActionToProps = { getProfile };
 
 export default connect(
   mapStateToProps,

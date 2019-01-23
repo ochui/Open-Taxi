@@ -13,6 +13,8 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import UUID from "pure-uuid";
 import humanparser from "humanparser";
+import watch from "redux-watch";
+import isEqual from "is-equal";
 import { tokenRequest, register } from "../../actions/authActions";
 import { BarIndicator } from "react-native-indicators";
 import styles from "./styles";
@@ -22,12 +24,22 @@ class RegisterScreen extends Component {
     header: null
   };
 
-  componentDidUpdate() {
-    if (this.props.error) {
-      Alert.alert("Request failed", "Please check your credentials");
-    }
+  componentWillMount() {
+    let w = watch(store.getState, "auth", isEqual);
+    this.unsubscribe = store.subscribe(
+      w((newVal, oldVal, objectPath) => {
+        if (newVal.token) {
+          this.props.navigation.navigate("Location");
+        } else if (!newVal.isLoading && newVal.error) {
+          Alert.alert("Request failed", "Please check your credentials");
+        }
+      })
+    );
   }
 
+  componentWillUnmount() {
+    this.unsubscribe = null;
+  }
   submit = async values => {
     const uuid = new UUID(4);
     if (values == {} || values == "" || values.fullname == undefined) {

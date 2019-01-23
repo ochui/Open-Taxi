@@ -11,7 +11,7 @@ export function getCompanies() {
           payload: res.data
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.request, err.response));
   };
 }
 
@@ -25,11 +25,6 @@ export function getRoutes(park_id) {
           payload: res.data
         });
       })
-      .catch(err => {
-        dispatch({
-          type: types.ROUTES_LOADED,
-          payload: err
-        });
-      });
+      .catch(err => console.log(err.request, err.response));
   };
 }

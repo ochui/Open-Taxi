@@ -32,7 +32,7 @@ const initialState = {
 const persistConfig = {
   key: "location",
   storage: storage,
-  blacklist: ["predictions", "resultType", "inputData"]
+  blacklist: ["predictions", "resultType", "inputData", "selectedAddress"]
 };
 
 const locationReducer =  (state = initialState, action) => {

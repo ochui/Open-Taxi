@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "tripplaExpress",
+    "name": "Tripple A",
     "description": "This project is really great.",
     "slug": "tripplaExpress",
     "privacy": "public",
@@ -20,11 +20,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.trippleae.passanger"
     }
   }
 }
