@@ -62,7 +62,8 @@ export default (styles = {
   },
   searchBox: {
     top: 0,
-    width: width
+    width: width,
+    alignItems: "center"
   },
   inputWrapper: {
     marginLeft: 15,
@@ -85,7 +86,6 @@ export default (styles = {
     fontSize: 14
   },
   label: {
-    fontSize: 10,
     marginLeft: 10,
     marginTop: 10,
     marginBottom: 0

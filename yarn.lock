@@ -4668,6 +4668,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-animatable@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.0.tgz#b5c3940fc758cfd9b2fe54613a457c4b6962b46e"
+  integrity sha512-GGYEYvderfzPZcPnw7xov4nlRmi9d6oqcIzx0fGkUUsMshOQEtq5IEzFp3np0uTB9n8/gZIZcdbUPggVlVydMg==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-animatable@^1.2.4:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.1.tgz#f004a7e9de6838d0fbf210d642593cff7affd9ef"
@@ -4790,6 +4797,14 @@ react-native-modal@^7.0.2:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
 
+react-native-number-stepper@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-number-stepper/-/react-native-number-stepper-0.0.2.tgz#3f96326eb09ebd0c2b84f05b03d468108e3d1e39"
+  integrity sha512-yfxj/GXE4RPaRMeuuV6l8NZuAhBYu9XfvMqqsRsdfAwxh5dqeaFUqrpA6PZ9IdMMViXsTEI6K70uMaE3XdJQKg==
+  dependencies:
+    react-native-animatable "1.3.0"
+    react-native-size-matters "0.1.1"
+
 react-native-reanimated@1.0.0-alpha.10:
   version "1.0.0-alpha.10"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.0.0-alpha.10.tgz#e9e6fb35a2cf52fdc912b9fbc76f34f80698e530"
@@ -4818,6 +4833,11 @@ react-native-screens@1.0.0-alpha.15:
   version "1.0.0-alpha.21"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.21.tgz#ba8d401e82fa3d0f30e7922dbb6446a8c000d7ef"
   integrity sha512-Jm0hfUyEw0v4Rn2rmpG2ab+H2J+36a/505gufMeZQUcx8EajysiuyzNcHQ9B9NhUEUajk/ostF73X4pHuMLItw==
+
+react-native-size-matters@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.1.1.tgz#928388ae75e990263aa0429b56c19a7dc1ec7ca6"
+  integrity sha512-GhrLQ/r9/lWuDqSxf3bbAahob/Q3lLiYptx/a23nDX9EBufqhQLuvBtnr8lzqVVT6QMoBXncy4FLoFH7esMbXA==
 
 react-native-status-bar-height@^2.2.0:
   version "2.2.0"

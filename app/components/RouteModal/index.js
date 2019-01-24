@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Alert } from "react-native";
+import { Text, Alert, Picker } from "react-native";
 import {
   View,
   Button,
@@ -10,9 +10,12 @@ import {
   Body,
   Content,
   Title,
-  Right
+  Right,
+  InputGroup,
+  Input
 } from "native-base";
 import Modal from "react-native-modal";
+import { RNNumberStepper } from "react-native-number-stepper";
 import Rave from "../../rave-react-native/Rave";
 import {
   FLUTTERWAVE_API_PUBLIC_KEY,
@@ -46,6 +49,9 @@ const RouteModal = ({ isModalVisible, toggleRouteModal, cost }) => {
         <Content>
           <View style={styles.farePrice}>
             <Text style={styles.fareText}>₦{cost}</Text>
+          </View>
+          <View style={styles.searchBox}>
+            <RNNumberStepper />
           </View>
         </Content>
       </Container>
