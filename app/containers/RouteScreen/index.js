@@ -13,6 +13,8 @@ import { connect } from "react-redux";
 import AppHeader from "../../components/Header";
 import { getRoutes } from "../../actions/companyAction";
 import RouteModal from "../../components/RouteModal";
+import PaymentModal from "../../components/PaymentModal";
+import { changePaymentMethod } from "../../actions/paymentActions";
 
 class RouteScreen extends Component {
   static navigationOptions = {
@@ -23,8 +25,10 @@ class RouteScreen extends Component {
     super();
     this.state = {
       isModalVisible: false,
+      isPaymentModalVisible: false,
       routeId: null,
-      cost: null
+      cost: 0,
+      baseCost: 0
     };
   }
 
@@ -32,7 +36,14 @@ class RouteScreen extends Component {
     this.setState({
       isModalVisible: !this.state.isModalVisible,
       routeId: routeId,
-      cost: cost
+      cost: cost,
+      baseCost: cost
+    });
+  };
+
+  _togglePaymentModal = (routeId = null, cost = null) => {
+    this.setState({
+      isPaymentModalVisible: !this.state.isPaymentModalVisible
     });
   };
 
@@ -77,6 +88,19 @@ class RouteScreen extends Component {
           isModalVisible={this.state.isModalVisible}
           toggleRouteModal={this._toggleModal}
           cost={this.state.cost}
+          paymentMethod={this.props.paymentMethod}
+          onChange={n => this.setState({ cost: this.state.baseCost * n })}
+          togglePaymentModal={this._togglePaymentModal}
+          changePayment={this.props.changePaymentMethod}
+        />
+
+        <PaymentModal
+          isModalVisible={this.props.paymentModalStatus}
+          paymentMethod={this.props.paymentMethod}
+          togglePaymentModal={this._togglePaymentModal}
+          userData={this.props.userData}
+          fare={this.state.cost}
+          addBooking={() => {}}
         />
       </Container>
     );
@@ -85,11 +109,13 @@ class RouteScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    routes: state.company.routes || []
+    routes: state.company.routes || [],
+    userData: state.auth.userData,
+    paymentMethod: state.booking.paymentMethod
   };
 };
 
-const mapActionToProps = { getRoutes };
+const mapActionToProps = { getRoutes, changePaymentMethod };
 
 export default connect(
   mapStateToProps,

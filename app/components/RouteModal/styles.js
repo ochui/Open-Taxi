@@ -60,10 +60,14 @@ export default (styles = {
     color: "#fff",
     fontWeight: "600"
   },
-  searchBox: {
-    top: 0,
-    width: width,
-    alignItems: "center"
+  buttonBox: {
+    width: 130,
+    height: 70,
+    borderWidth: 4,
+    borderColor: "#fff",
+    marginBottom: 10,
+    alignSelf: "center",
+    marginTop: 40
   },
   inputWrapper: {
     marginLeft: 15,
@@ -73,6 +77,15 @@ export default (styles = {
     backgroundColor: "#fff",
     opacity: 0.8,
     borderBottomWidth: 0
+  },
+  ask: {
+    marginLeft: 15,
+    marginRight: 10,
+    marginTop: 50,
+    backgroundColor: "#fff",
+    opacity: 0.8,
+    borderBottomWidth: 0,
+    alignItems: "center"
   },
   secondInputWrapper: {
     marginLeft: 15,
