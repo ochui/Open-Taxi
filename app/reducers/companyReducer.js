@@ -3,8 +3,8 @@ import * as types from "../actions/types";
 import update from "immutability-helper";
 
 const initialState = {
-  companies: {},
-  routes: {}
+  companies: [],
+  routes: []
 };
 
 export default function(state = initialState, action) {

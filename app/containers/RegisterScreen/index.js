@@ -15,7 +15,9 @@ import UUID from "pure-uuid";
 import humanparser from "humanparser";
 import watch from "redux-watch";
 import isEqual from "is-equal";
-import { tokenRequest, register } from "../../actions/authActions";
+import axios from "axios";
+import { getActiveBookings } from "../../actions/bookingActions";
+import { tokenRequest, register, getProfile } from "../../actions/authActions";
 import { BarIndicator } from "react-native-indicators";
 import styles from "./styles";
 
@@ -29,6 +31,11 @@ class RegisterScreen extends Component {
     this.unsubscribe = store.subscribe(
       w((newVal, oldVal, objectPath) => {
         if (newVal.token) {
+          axios.defaults.headers.common["Authorization"] = `Token ${
+            newVal.token
+          }`;
+          this.props.getProfile();
+          this.props.getActiveBookings();
           this.props.navigation.navigate("Location");
         } else if (!newVal.isLoading && newVal.error) {
           Alert.alert("Request failed", "Please check your credentials");
@@ -190,7 +197,12 @@ const mapStateToProps = state => {
     isLoading: state.auth.isLoading
   };
 };
-const mapActionToProps = { register, tokenRequest };
+const mapActionToProps = {
+  register,
+  tokenRequest,
+  getProfile,
+  getActiveBookings
+};
 
 export default reduxForm({
   form: "register"

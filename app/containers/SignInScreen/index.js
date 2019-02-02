@@ -14,12 +14,15 @@ import { Text } from "native-base";
 import { BarIndicator } from "react-native-indicators";
 import watch from "redux-watch";
 import isEqual from "is-equal";
+import axios from "axios";
 import {
   login,
   tokenRequest,
   checkToken,
-  clearError
+  clearError,
+  getProfile
 } from "../../actions/authActions";
+import { getActiveBookings } from "../../actions/bookingActions";
 import { store } from "../../store";
 import styles from "./styles";
 
@@ -38,6 +41,11 @@ class SignInScreen extends Component {
     this.unsubscribe = store.subscribe(
       w((newVal, oldVal, objectPath) => {
         if (newVal.token) {
+          axios.defaults.headers.common["Authorization"] = `Token ${
+            newVal.token
+          }`;
+          this.props.getProfile();
+          this.props.getActiveBookings();
           this.props.navigation.navigate("Location");
         } else if (!newVal.isLoading && newVal.error) {
           Alert.alert("Error", "Unable to login with provided credentials.");
@@ -139,7 +147,14 @@ const mapStateToProps = state => {
     error: state.auth.error
   };
 };
-const mapActionToProps = { login, tokenRequest, checkToken, clearError };
+const mapActionToProps = {
+  login,
+  tokenRequest,
+  checkToken,
+  clearError,
+  getProfile,
+  getActiveBookings
+};
 
 export default reduxForm({
   form: "signin"
