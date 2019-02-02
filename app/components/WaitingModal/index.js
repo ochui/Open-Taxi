@@ -22,7 +22,11 @@ export const WaitingModal = ({
   enableLoader
 }) => {
   return (
-    <Modal isVisible={isModalVisible}>
+    <Modal
+      isVisible={isModalVisible}
+      iosBarStyle="light-content"
+      androidStatusBarColor="#fb9403"
+    >
       <Header style={styles.header}>
         <Left>
           <Button transparent onPress={toggleModal}>

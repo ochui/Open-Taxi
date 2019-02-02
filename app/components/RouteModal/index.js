@@ -30,7 +30,11 @@ const RouteModal = ({
   return (
     <Modal isVisible={isModalVisible}>
       <Container>
-        <Header style={styles.header}>
+        <Header
+          style={styles.header}
+          iosBarStyle="light-content"
+          androidStatusBarColor="#fb9403"
+        >
           <Left>
             <Button transparent onPress={toggleRouteModal}>
               <Icon

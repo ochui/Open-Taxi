@@ -35,7 +35,11 @@ const PaymentModal = ({
   return (
     <Modal isVisible={isModalVisible}>
       <Container>
-        <Header style={styles.header}>
+        <Header
+          style={styles.header}
+          iosBarStyle="light-content"
+          androidStatusBarColor="#fb9403"
+        >
           <Left>
             <Button transparent onPress={togglePaymentModal}>
               <Icon
