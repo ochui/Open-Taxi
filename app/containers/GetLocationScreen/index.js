@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, Alert, Platform, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { getCurrentLocation } from "../../actions/locationActions";
+import { registerForPushNotifications } from "../../actions/pushNotificationAction";
 import styles from "./styles";
 import { Constants, Location, Permissions, IntentLauncherAndroid } from "expo";
 
@@ -38,6 +39,9 @@ class GetLocationScreen extends Component {
       let { loadingCount } = this.state;
       this.setState({ ...this.state, loadingCount: ++loadingCount });
     }, 700);
+
+    //register for push notification
+    this.props.registerForPushNotifications();
   }
 
   componentWillUnmount() {
@@ -111,7 +115,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapActionsToProps = { getCurrentLocation };
+const mapActionsToProps = { getCurrentLocation, registerForPushNotifications };
 
 export default connect(
   mapStateToProps,

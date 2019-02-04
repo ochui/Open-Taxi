@@ -4,6 +4,7 @@ import authReducer from "./authReducer";
 //import paymentReducer from "./paymentReducer";
 import bookingReducer from "./bookingReducer";
 import companyReducer from "./companyReducer";
+import pushNotificationReducer from "./pushNotificationReducer";
 import { reducer as formReducer } from "redux-form";
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
   form: formReducer,
   //payment: paymentReducer,
   company: companyReducer,
-  booking: bookingReducer
+  booking: bookingReducer,
+  notification: pushNotificationReducer
 });
