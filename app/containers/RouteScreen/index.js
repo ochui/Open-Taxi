@@ -53,13 +53,13 @@ class RouteScreen extends Component {
         <CardTitle title={data.pick_up + " to " + data.drop_off} />
         <CardContent text={"₦" + data.cost} />
         <CardAction separator={true} inColumn={false}>
-          <CardButton onPress={() => {}} title="Share" color="#FEB557" />
+          <CardButton onPress={() => {}} title="Share" color="#0C4866" />
           <CardButton
             onPress={() => {
               this._toggleModal((routeId = data.id), (cost = data.cost));
             }}
             title="Book"
-            color="#FEB557"
+            color="#0C4866"
           />
         </CardAction>
       </Card>

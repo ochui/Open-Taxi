@@ -32,14 +32,14 @@ class CompanyScreen extends Component {
         <CardTitle subtitle="23 Route" />
         <CardContent text={data.address} />
         <CardAction separator={true} inColumn={false}>
-          <CardButton onPress={() => {}} title="Share" color="#FEB557" />
+          <CardButton onPress={() => {}} title="Share" color="#0C4866" />
           <CardButton
             onPress={() => {
               this.props.getRoutes(data.id);
               this.props.navigation.navigate("Routes", { park: data.id });
             }}
             title="Explore"
-            color="#FEB557"
+            color="#0C4866"
           />
         </CardAction>
       </Card>

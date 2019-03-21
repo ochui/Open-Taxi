@@ -32,7 +32,8 @@ import {
   toggleWaitingModal,
   enableLoader,
   enableCLoader,
-  cancelBooking
+  cancelBooking,
+  getNearbyDrivers
 } from "../../actions/bookingActions";
 import watch from "redux-watch";
 import { store } from "../../store";
@@ -79,6 +80,7 @@ class MapScreen extends Component {
         }
       })
     );
+    this.props.getNearbyDrivers(this.props.initialRegion.longitude, this.props.initialRegion.latitude);
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -300,7 +302,8 @@ const mapActionToProps = {
   togglePaymentModal,
   enableLoader,
   cancelBooking,
-  enableCLoader
+  enableCLoader,
+  getNearbyDrivers
 };
 
 const mapStateToProps = state => {

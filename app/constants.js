@@ -8,3 +8,10 @@ export const SURGE = 1;
 export const BASE_FARE = 0.44;
 export const TIME_RATE = 0.98;
 export const DISTANCE_RATE = 1.78;
+export const GEOLOCATION_OPTIONS = {
+  enableHighAccuracy: true,
+  timeout: 20000,
+  maximumAge: 1000
+};
+
+export const APP_NAME = "Trip";

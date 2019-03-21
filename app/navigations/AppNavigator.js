@@ -66,9 +66,9 @@ const AppDrawerNavigator = createDrawerNavigator(
   },
   {
     contentComponent: SideBar,
-    drawerBackgroundColor: "#fb9403",
+    drawerBackgroundColor: "#0C4866",
     contentOptions: {
-      activeBackgroundColor: "black",
+      activeBackgroundColor: "#0F3F55",
       activeTintColor: "white",
       itemsContainerStyle: {
         marginVertical: 0

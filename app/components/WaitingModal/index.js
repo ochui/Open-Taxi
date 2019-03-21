@@ -25,7 +25,7 @@ export const WaitingModal = ({
     <Modal
       isVisible={isModalVisible}
       iosBarStyle="light-content"
-      androidStatusBarColor="#fb9403"
+      androidStatusBarColor="#0C4866"
     >
       <Header style={styles.header}>
         <Left>

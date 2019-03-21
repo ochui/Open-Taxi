@@ -3,6 +3,8 @@ import { View, Text, Alert, Platform, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { getCurrentLocation } from "../../actions/locationActions";
 import { registerForPushNotifications } from "../../actions/pushNotificationAction";
+import { getNearbyDrivers } from "../../actions/bookingActions";
+import { GEOLOCATION_OPTIONS } from "../../constants";
 import styles from "./styles";
 import { Constants, Location, Permissions, IntentLauncherAndroid } from "expo";
 
@@ -20,7 +22,6 @@ class GetLocationScreen extends Component {
   }
   componentWillMount() {
     Location.getProviderStatusAsync().then(r => {
-      console.log(r);
       if (r.locationServicesEnabled) {
         this.setState({ locationAcess: true });
         this._getLocationAsync();
@@ -44,6 +45,11 @@ class GetLocationScreen extends Component {
     this.props.registerForPushNotifications();
   }
 
+  componentDidMount() {
+    //Location.watchPositionAsync(this._success, this._error, GEOLOCATION_OPTIONS);
+    Location.watchPositionAsync(GEOLOCATION_OPTIONS, this._success);
+  }
+
   componentWillUnmount() {
     clearInterval(this.timerId);
   }
@@ -58,6 +64,15 @@ class GetLocationScreen extends Component {
     }
   }
 
+  _success = (pos) => {
+    console.log("asdf")
+    console.log(pos)
+  }
+
+  _error = (err) => {
+    console.log(err)
+  }
+
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== "granted") {
@@ -65,6 +80,10 @@ class GetLocationScreen extends Component {
     }
 
     this.props.getCurrentLocation();
+    this.props.getNearbyDrivers(
+      this.props.region.region.longitude,
+      this.props.region.region.latitude
+    );
   };
 
   openSettings = () => {
@@ -115,7 +134,11 @@ const mapStateToProps = state => {
   };
 };
 
-const mapActionsToProps = { getCurrentLocation, registerForPushNotifications };
+const mapActionsToProps = {
+  getCurrentLocation,
+  registerForPushNotifications,
+  getNearbyDrivers
+};
 
 export default connect(
   mapStateToProps,

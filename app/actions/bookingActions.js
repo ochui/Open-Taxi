@@ -11,7 +11,9 @@ import {
   ADD_BOOKING_WITH_PAYMENT,
   LOADING,
   CLOADING,
-  CANCEL_BOOKING
+  CANCEL_BOOKING,
+  DRIVERS_FOUND,
+  DRIVERS_NOT_FOUND
 } from "./types";
 
 export function addBooking(paymentData = {}) {
@@ -174,3 +176,26 @@ export function cancelBooking(bookingId) {
       .catch(error => console.log(error));
   };
 }
+
+export const getNearbyDrivers = (longtitude = null, latitude = null) => {
+  return async dispacth => {
+    try {
+      drivers = await axios.get(`drivers/${longtitude}/${latitude}`);
+      if (drivers.length > 0) {
+        dispacth({
+          type: DRIVERS_FOUND,
+          payload: drivers.data.features
+        });
+      } else {
+        dispacth({
+          type: DRIVERS_NOT_FOUND
+        });
+      }
+    } catch (error) {
+      console.log(error.response);
+      dispacth({
+        type: DRIVERS_NOT_FOUND
+      });
+    }
+  };
+};

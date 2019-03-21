@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default (styles = StyleSheet.create({
   header: {
-    backgroundColor: "#fb9403",
+    backgroundColor: "#0C4866",
     height: 200
   },
   avatar: {
@@ -37,7 +37,7 @@ export default (styles = StyleSheet.create({
   },
   info: {
     fontSize: 16,
-    color: "#fb9403",
+    color: "#0C4866",
     marginTop: 10
   },
   buttonContainer: {

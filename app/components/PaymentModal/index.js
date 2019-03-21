@@ -38,7 +38,7 @@ const PaymentModal = ({
         <Header
           style={styles.header}
           iosBarStyle="light-content"
-          androidStatusBarColor="#fb9403"
+          androidStatusBarColor="#0C4866"
         >
           <Left>
             <Button transparent onPress={togglePaymentModal}>

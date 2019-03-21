@@ -8,14 +8,14 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app-icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#fb9403"
+      "backgroundColor": "#fff"
     },
     "androidStatusBar": {
-      "backgroundColor": "#fb9403"
+      "backgroundColor": "#0C4866"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

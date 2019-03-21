@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export default styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#fb9403"
+      backgroundColor: "#0C4866"
     },
     loginContainer: {
       alignItems: "center",

@@ -13,7 +13,8 @@ import {
   DISTANCE_RATE,
   BASE_FARE,
   TIME_RATE,
-  SURGE
+  SURGE,
+  GEOLOCATION_OPTIONS
 } from "../constants";
 import calculateFare from "../utills/fareCalculator";
 import GPlaces from "react-native-gplaces";
@@ -24,11 +25,6 @@ const places = new GPlaces({
   key: GOOGLE_API //'AIzaSyAhZ0T_u35s-nuKtDnpHfIjZpgScKzeK38', // https://developers.google.com/maps/documentation/javascript/get-api-key
 });
 
-const GEOLOCATION_OPTIONS = {
-  enableHighAccuracy: true,
-  timeout: 20000,
-  maximumAge: 1000
-};
 
 Geocoder.fallbackToGoogle(GOOGLE_API);
 export function getCurrentLocation() {

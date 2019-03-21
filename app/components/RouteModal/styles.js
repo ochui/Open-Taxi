@@ -10,7 +10,7 @@ export default (styles = {
   header: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fb9403"
+    backgroundColor: "#0C4866"
   },
   farePrice: {
     width: 130,
@@ -19,7 +19,7 @@ export default (styles = {
     borderColor: "#fff",
     marginBottom: 10,
     alignSelf: "center",
-    backgroundColor: "#fb9403",
+    backgroundColor: "#0C4866",
     marginTop: 40
   },
   name: {
@@ -37,7 +37,7 @@ export default (styles = {
   },
   info: {
     fontSize: 16,
-    color: "#fb9403",
+    color: "#0C4866",
     marginTop: 10
   },
   buttonContainer: {

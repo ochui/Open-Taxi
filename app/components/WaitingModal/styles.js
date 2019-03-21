@@ -4,7 +4,7 @@ const { width } = Dimensions.get("window");
 export default (styles = {
   findDriverContainer: {
     flex: 1,
-    backgroundColor: "#fb9403",
+    backgroundColor: "#0C4866",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -92,6 +92,6 @@ export default (styles = {
   header: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fb9403"
+    backgroundColor: "#0C4866"
   }
 });

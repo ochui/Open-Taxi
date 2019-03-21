@@ -18,7 +18,7 @@ const AuthTabNavigator = createMaterialTopTabNavigator(
         color: "white"
       },
       style: {
-        backgroundColor: "#fb9403",
+        backgroundColor: "#0C4866",
         paddingTop: getStatusBarHeight(),
         height: 54 + getStatusBarHeight()
       }

@@ -1,22 +1,24 @@
-import React from 'react';
-import { Header, Title, Button, Left, Right, Body, Icon } from 'native-base';
-
-import styles from './styles'
-const AppHeader = ({props}) => {
+import React from "react";
+import { Image } from "react-native";
+import { Header, Title, Button, Left, Right, View, Icon } from "native-base";
+import { APP_NAME } from "../../constants";
+import styles from "./styles";
+const AppHeader = ({ props }) => {
   return (
     <Header
       style={styles.header}
       iosBarStyle="light-content"
-      androidStatusBarColor="#fb9403">
-      <Left>
+      androidStatusBarColor="#0C4866"
+    >
+      <Left style={{ flex: 1 }}>
         <Button transparent onPress={() => props.navigation.openDrawer()}>
           <Icon style={styles.icon} ios="ios-menu" android="md-menu" />
         </Button>
       </Left>
-      <Body style={styles.headerBody}>
-        <Title style={styles.headerText}>Tripple A</Title>
-      </Body>
-      <Right>
+      <View style={styles.headerBody}>
+        <Image resizeMode="contain" style={styles.logo} source={require('../../../assets/header-icon.png')}/>
+      </View>
+      <Right style={{ flex: 1 }}>
         <Icon
           style={styles.icon}
           ios="ios-notifications"
