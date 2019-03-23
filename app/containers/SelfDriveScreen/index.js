@@ -11,15 +11,15 @@ import {
 } from "react-native-cards";
 import { connect } from "react-redux";
 import AppHeader from "../../components/Header";
-import { getCompanies, getRoutes } from "../../actions/companyAction";
+import { getCars } from "../../actions/carsActions";
 
-class CompanyScreen extends Component {
+class SelfDriveScreen extends Component {
   static navigationOptions = {
     header: null
   };
 
   componentWillMount() {
-    this.props.getCompanies();
+    this.props.getCars();
   }
 
   cell = data => {
@@ -27,20 +27,14 @@ class CompanyScreen extends Component {
       <Card>
         <CardImage
           source={{ uri: data.image }}
-          title={data.name}
+          title={data.model}
         />
-        {/* <CardTitle subtitle="23 Route" /> */}
-        <CardContent text={data.address} />
+        <CardTitle subtitle={data.status ? "Available" : "Unavailable"} />
+        <CardContent text={`${data.start_time}am --- ${data.end_time}am (Next day)`} />
+        <CardContent text={`₦${data.cost}`} />
         <CardAction separator={true} inColumn={false}>
           <CardButton onPress={() => {}} title="Share" color="#0C4866" />
-          <CardButton
-            onPress={() => {
-              this.props.getRoutes(data.id);
-              this.props.navigation.navigate("Routes", { park: data.id });
-            }}
-            title="Explore"
-            color="#0C4866"
-          />
+          <CardButton onPress={() => {console.log('123')}} title="Request Now" color="#0C4866" />
         </CardAction>
       </Card>
     );
@@ -51,12 +45,12 @@ class CompanyScreen extends Component {
       <Container>
         <AppHeader props={this.props} />
         <CompleteFlatList
-          searchKey={["name", "address"]}
+          searchKey={["model", "plate_no"]}
           searchBarBackgroundStyles="yellow"
           pullToRefreshCallback={() => {
-            this.props.getCompanies();
+            this.props.getCars();
           }}
-          data={this.props.companies}
+          data={this.props.cars}
           ref={c => (this.completeFlatList = c)}
           renderSeparator={null}
           renderItem={this.cell}
@@ -70,13 +64,13 @@ class CompanyScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    companies: state.company.companies || []
+    cars: state.cars.cars || []
   };
 };
 
-const mapActionToProps = { getCompanies, getRoutes };
+const mapActionToProps = { getCars };
 
 export default connect(
   mapStateToProps,
   mapActionToProps
-)(CompanyScreen);
+)(SelfDriveScreen);

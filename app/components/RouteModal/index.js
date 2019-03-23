@@ -58,10 +58,10 @@ const RouteModal = ({
           </View>
           <View style={styles.buttonBox}>
             <RNNumberStepper
-              buttonsBackgroundColor="#fb9403"
+              buttonsBackgroundColor="#0C4866"
               minValue={1}
               value={1}
-              labelBackgroundColor="#fb9403"
+              labelBackgroundColor="#0C4866"
               width={130}
               onChange={nValue => onChange(nValue)}
             />

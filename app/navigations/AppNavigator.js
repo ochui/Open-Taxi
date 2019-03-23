@@ -8,6 +8,7 @@ import EditProfileScreen from "../containers/EditProfileScreen";
 import BookingLogScreen from "../containers/BookingLogScreen";
 import CompanyScreen from "../containers/CompanyScreen";
 import RouteScreen from "../containers/RouteScreen";
+import SelfDriveScreen from "../containers/SelfDriveScreen";
 // Profile
 const ProfileStackNavigator = createStackNavigator({
   Profile: ProfileScreen,
@@ -54,6 +55,20 @@ const AppDrawerNavigator = createDrawerNavigator(
       screen: ParkStackNavigator,
       navigationOptions: {
         header: null,
+        drawerIcon: () => (
+          <Icon
+            ios="ios-car"
+            android="md-car"
+            style={{ color: "white" }}
+          />
+        )
+      }
+    },
+    SelfDrive: {
+      screen: SelfDriveScreen,
+      navigationOptions: {
+        header: null,
+        drawerLabel: 'Self Drive',
         drawerIcon: () => (
           <Icon
             ios="ios-car"
