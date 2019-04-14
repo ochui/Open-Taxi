@@ -8,12 +8,15 @@ import {
   TOGGLE_WAITING_MODAL,
   CHANGE_PAYMENT_METHOD,
   TOGGLE_PAYMENT_MODAL,
+  TOGGLE_PAYMENT_MODAL_C,
   ADD_BOOKING_WITH_PAYMENT,
   LOADING,
   CLOADING,
   CANCEL_BOOKING,
   DRIVERS_FOUND,
-  DRIVERS_NOT_FOUND
+  DRIVERS_NOT_FOUND,
+  CAR_BOOKING_SUCCESSFUL,
+  CAR_BOOKING_FAILED
 } from "./types";
 
 export function addBooking(paymentData = {}) {
@@ -148,6 +151,15 @@ export function togglePaymentModal(state) {
   };
 }
 
+export function togglePaymentModalC(state) {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_PAYMENT_MODAL_C,
+      payload: !state
+    });
+  };
+}
+
 export function enableLoader() {
   return dispatch => {
     dispatch({
@@ -195,6 +207,24 @@ export const getNearbyDrivers = (longtitude = null, latitude = null) => {
       console.log(error.response);
       dispacth({
         type: DRIVERS_NOT_FOUND
+      });
+    }
+  };
+};
+
+export const addCarBooking = car => {
+  return async dispacth => {
+    try {
+      res = axios.post(`cars/booking`, { car: car });
+      dispacth({
+        type: CAR_BOOKING_SUCCESSFUL,
+        payload: res.data
+      });
+    } catch (error) {
+      console.log(error);
+      dispacth({
+        type: CAR_BOOKING_FAILED,
+        payload: res.data
       });
     }
   };

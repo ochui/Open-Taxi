@@ -5,13 +5,15 @@ export const FLUTTERWAVE_API_PUBLIC_KEY =
 export const FLUTTERWAVE_API_SECRET_KEY =
   "FLWSECK-b0b70b9060d082f1a966ec838507c1c8-X";
 export const SURGE = 1;
-export const BASE_FARE = 0.44;
-export const TIME_RATE = 0.98;
-export const DISTANCE_RATE = 1.78;
+export const BASE_FARE = 1500;
+export const TIME_RATE = 200;
+export const DISTANCE_RATE = 350;
 export const GEOLOCATION_OPTIONS = {
   enableHighAccuracy: true,
   timeout: 20000,
   maximumAge: 1000
 };
+export const FLUTTERWAVE_BVN_API_ENDPOINT =
+  "https://ravesandboxapi.flutterwave.com/v2/kyc/bvn";
 
 export const APP_NAME = "Trip";

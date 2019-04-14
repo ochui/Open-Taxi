@@ -8,23 +8,47 @@ import {
   LOADING,
   CHANGE_PAYMENT_METHOD,
   TOGGLE_PAYMENT_MODAL,
+  TOGGLE_PAYMENT_MODAL_C,
   CANCEL_BOOKING,
   CLOADING,
-  GET_ACTIVE_BOOKINGS
+  GET_ACTIVE_BOOKINGS,
+  CAR_BOOKING_SUCCESSFUL,
+  CAR_BOOKING_FAILED,
+  ENABLE_VERIFICATION_SPINNER,
+  DISABLE_VERIFICATION_SPINNER
 } from "../actions/types";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+
 const initialState = {
   booking: {},
   loading: false,
   isModalVisible: false,
+  isModalCVisible: false,
   searchingForDriver: false,
+  spinner: false,
   //payment modal
   paymentMethod: "card",
   paymentModalStatus: false,
+  paymentModalCStatus: false,
   cloader: false,
   pastBookings: []
 };
 
-export default (state = initialState, action) => {
+const persistConfig = {
+  key: "booking",
+  storage: storage,
+  blacklist: [
+    "isModalVisible",
+    "isModalCVisible",
+    "paymentModalStatus",
+    "paymentModalCStatus",
+    "cloader",
+    "spinner"
+  ]
+};
+
+const bookingReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOKING_SUCCESS:
       return update(state, {
@@ -105,6 +129,12 @@ export default (state = initialState, action) => {
           $set: action.payload
         }
       });
+    case TOGGLE_PAYMENT_MODAL_C:
+      return update(state, {
+        paymentModalCStatus: {
+          $set: action.payload
+        }
+      });
     case CANCEL_BOOKING:
       return update(state, {
         booking: {
@@ -123,7 +153,27 @@ export default (state = initialState, action) => {
           $set: action.payload
         }
       });
+    case CAR_BOOKING_SUCCESSFUL:
+      return update(state, {
+        paymentModalCStatus: {
+          $set: false
+        }
+      });
+    case ENABLE_VERIFICATION_SPINNER:
+      return update(state, {
+        spinner: {
+          $set: true
+        }
+      });
+    case DISABLE_VERIFICATION_SPINNER:
+      return update(state, {
+        spinner: {
+          $set: false
+        }
+      });
     default:
       return state;
   }
 };
+
+export default persistReducer(persistConfig, bookingReducer);

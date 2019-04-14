@@ -13,7 +13,11 @@ import { connect } from "react-redux";
 import AppHeader from "../../components/Header";
 import { getRoutes } from "../../actions/companyAction";
 import RouteModal from "../../components/RouteModal";
-import PaymentModal from "../../components/PaymentModal";
+import {
+  togglePaymentModalC,
+  addCarBooking
+} from "../../actions/bookingActions";
+import CPaymentModal from "../../components/CPaymentModal";
 import { changePaymentMethod } from "../../actions/paymentActions";
 
 class RouteScreen extends Component {
@@ -45,6 +49,10 @@ class RouteScreen extends Component {
     this.setState({
       isPaymentModalVisible: !this.state.isPaymentModalVisible
     });
+  };
+
+  _togglePaymentModalC = () => {
+    this.props.togglePaymentModalC(this.props.paymentModalCStatus);
   };
 
   cell = data => {
@@ -90,17 +98,17 @@ class RouteScreen extends Component {
           cost={this.state.cost}
           paymentMethod={this.props.paymentMethod}
           onChange={n => this.setState({ cost: this.state.baseCost * n })}
-          togglePaymentModal={this._togglePaymentModal}
+          togglePaymentModal={this._togglePaymentModalC}
           changePayment={this.props.changePaymentMethod}
         />
 
-        <PaymentModal
-          isModalVisible={this.props.paymentModalStatus}
+        <CPaymentModal
+          isModalCVisible={this.props.paymentModalCStatus}
           paymentMethod={this.props.paymentMethod}
-          togglePaymentModal={this._togglePaymentModal}
+          toggleCPaymentModal={this._togglePaymentModalC}
           userData={this.props.userData}
-          fare={this.state.cost}
-          addBooking={() => {}}
+          amount={this.state.cost}
+          addAction={() => {}}
         />
       </Container>
     );
@@ -111,11 +119,17 @@ const mapStateToProps = state => {
   return {
     routes: state.company.routes || [],
     userData: state.auth.userData,
-    paymentMethod: state.booking.paymentMethod
+    paymentMethod: state.booking.paymentMethod,
+    paymentModalCStatus: state.booking.paymentModalCStatus
   };
 };
 
-const mapActionToProps = { getRoutes, changePaymentMethod };
+const mapActionToProps = {
+  getRoutes,
+  changePaymentMethod,
+  togglePaymentModalC,
+  addCarBooking
+};
 
 export default connect(
   mapStateToProps,

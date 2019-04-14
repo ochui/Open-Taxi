@@ -4,10 +4,13 @@ import {
   TOKEN_RECIEVE,
   TOKEN_REQUSET_ERROR,
   CLEAR_TOKEN,
-  TOKEN_IS_VALID,
+  HIDE_BVN_SUCCESS_DIALOG,
+  HIDE_BVN_ERROR_DIALOG,
   TOKEN_IS_PRESENT,
   PROFILE_LOADED,
-  EDIT_LOADER
+  EDIT_LOADER,
+  BVN_VERIFICATION_FAILED,
+  BVN_VERIFICATION_SUCCESSFULL
 } from "../actions/types";
 import update from "immutability-helper";
 import storage from "redux-persist/lib/storage";
@@ -21,7 +24,9 @@ const initialState = {
   userData: {},
   editLoading: false,
   userDataLoaded: false,
-  error: {}
+  error: {},
+  verified: false,
+  unverified: false
 };
 
 const persistConfig = {
@@ -110,6 +115,30 @@ const authReducer = (state = initialState, action) => {
     case EDIT_LOADER:
       return update(state, {
         editLoading: {
+          $set: true
+        }
+      });
+    case HIDE_BVN_SUCCESS_DIALOG:
+      return update(state, {
+        verified: {
+          $set: action.payload
+        }
+      });
+    case HIDE_BVN_ERROR_DIALOG:
+      return update(state, {
+        unverified: {
+          $set: action.payload
+        }
+      });
+    case BVN_VERIFICATION_FAILED:
+      return update(state, {
+        unverified: {
+          $set: true
+        }
+      });
+    case BVN_VERIFICATION_SUCCESSFULL:
+      return update(state, {
+        verified: {
           $set: true
         }
       });
