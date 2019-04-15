@@ -5,9 +5,9 @@ export const FLUTTERWAVE_API_PUBLIC_KEY =
 export const FLUTTERWAVE_API_SECRET_KEY =
   "FLWSECK-b0b70b9060d082f1a966ec838507c1c8-X";
 export const SURGE = 1;
-export const BASE_FARE = 1500;
-export const TIME_RATE = 200;
-export const DISTANCE_RATE = 350;
+export const BASE_FARE = 300;
+export const TIME_RATE = 6.5;
+export const DISTANCE_RATE = 65;
 export const GEOLOCATION_OPTIONS = {
   enableHighAccuracy: true,
   timeout: 20000,
